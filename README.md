@@ -169,3 +169,80 @@ Tratar componentes como elementos facilmente substituíveis.
 - **VPC**: Rede virtual isolada dentro da AWS.
 - **CIDR**: Define faixa de IPs da VPC.
 - **Sub-rede pública**: Permite tráfego direto com a internet.
+
+## Aula 08/05/2025
+
+- Máquinas em VPC privada não têm acesso direto à internet. Para isso, é necessário usar uma máquina intermediária:
+  - NAT Instance ou NAT Gateway (na VPC pública)
+
+- Ambientes:
+  - Banco de dados → VPC privada  
+  - Instâncias de batch processing → VPC privada  
+  - Aplicações web → VPC pública  
+  - NAT Gateway → VPC pública
+
+- Componentes de segurança:
+  - **Security Group:** define quem tem permissão para acessar o quê  
+  - **Network ACL:** valida o tráfego de entrada e saída  
+  - **AWS Network Firewall:** firewall gerenciado, usado em uma subnet especial, controla regras de acesso à internet  
+  - **VPC Flow Logs:** registra tentativas de conexão
+
+## Aula 19/05/2025 (Parte 1)
+
+- **AWS Transit Gateway:**
+  - Roteador central para conectar todas as VPCs  
+  - Facilita conexões em topologias complexas  
+  - Serviço regional com suporte para até 5.000 conexões
+
+- **Topologias de rede:**
+  - Full Mesh: todas as VPCs se comunicam diretamente  
+  - Hub and Spoke (Shared VPC): uma VPC central (hub) com serviços compartilhados conecta-se às demais (spokes)
+
+- **Outros recursos de rede:**
+  - VPC Peering: conexão direta entre VPCs (gratuito se na mesma região, pago se em regiões diferentes)  
+  - Direct Connect: conexão dedicada entre rede local e AWS, via circuito direto
+
+## Aula 19/05/2025 (Parte 2)
+
+- **IAM Groups:** agrupam permissões e atribuem a usuários, facilitando o gerenciamento  
+- **RBAC (Role-Based Access Control):** usuários assumem papéis temporários com permissões definidas  
+- **ABAC (Attribute-Based Access Control):** permissões baseadas em atributos dos usuários ou grupos  
+- **Amazon Cognito:** serviço de autenticação, autorização e gerenciamento de usuários
+
+## Aula 29/05/2025
+
+- **Estrutura organizacional:**
+  - Empresas podem usar uma única conta AWS ou múltiplas contas organizadas hierarquicamente  
+  - **AWS Organizations:** gerencia múltiplas contas com controle centralizado  
+  - Conta root envia convites para formar hierarquia (permite billing consolidado)
+
+- **Serviços complementares:**
+  - **AWS Control Tower:** estrutura inicial completa com boas práticas, ideal para grandes organizações
+
+- **Conceitos de segurança:**
+  - Confiabilidade, integridade e disponibilidade: normalmente um é sacrificado em favor dos outros dois  
+  - **AWS Key Management Service (KMS):** criação e gerenciamento de chaves de criptografia  
+  - **Amazon Macie:** identifica arquivos com informações sensíveis  
+  - **Amazon Inspector:** detecta vulnerabilidades em EC2 e ECR
+
+## Aula 02/06/2025
+
+- **CloudWatch:** coleta, armazena e analisa métricas da aplicação; gera gráficos e alertas com métricas padrão ou customizadas  
+- **EventBridge:** barramento de eventos para monitoramento em tempo real de eventos da AWS
+
+## Aula 16/06/2025
+
+- **Serviços de banco de dados:**
+  - Aurora: escalabilidade horizontal e vertical via cluster  
+  - RDS: escalabilidade vertical com suporte a réplicas de leitura  
+  - DynamoDB: escalabilidade horizontal com uso de RCUs e WCUs
+
+- **Balanceamento de carga:**
+  - **ELB (Elastic Load Balancer):** distribui tráfego entre alvos em várias zonas de disponibilidade e verifica a saúde das instâncias  
+  - Tipos de Load Balancer:
+    - Application Load Balancer  
+    - Network Load Balancer  
+    - Gateway Load Balancer  
+    - Classic Load Balancer
+
+- **Route 53:** serviço de DNS para gerenciar registros de domínio
